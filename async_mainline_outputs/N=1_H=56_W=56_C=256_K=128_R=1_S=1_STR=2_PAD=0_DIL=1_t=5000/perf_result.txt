@@ -1,0 +1,2 @@
+conv2d time: 0.009052 ms
+conv2d speed: 5698.196340 GFLOPS
