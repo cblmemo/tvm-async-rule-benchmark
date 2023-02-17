@@ -1,0 +1,255 @@
+# from tvm.script import tir as T
+@tvm.script.ir_module
+class Module:
+    @T.prim_func
+    def main(A: T.Buffer[(3072, 3072), "float32"], B: T.Buffer[(3072, 3072), "float32"], Y: T.Buffer[(3072, 3072), "float32"]):
+        # function attr dict
+        T.func_attr({"global_symbol": "main", "tir.noalias": True})
+        # var definition
+        threadIdx_x = T.env_thread("threadIdx.x")
+        blockIdx_x = T.env_thread("blockIdx.x")
+        # buffer definition
+        A_1 = T.buffer_decl([9437184], dtype="float32", data=A.data)
+        B_1 = T.buffer_decl([9437184], dtype="float32", data=B.data)
+        Y_1 = T.buffer_decl([9437184], dtype="float32", data=Y.data)
+        # body
+        T.launch_thread(blockIdx_x, 576)
+        Y_local = T.allocate([128], "float32", "local")
+        Y_local_1 = T.buffer_decl([4096], dtype="float32", data=Y_local, scope="local")
+        A_shared = T.allocate([4096], "float32", "shared")
+        A_shared_1 = T.buffer_decl([4096], dtype="float32", data=A_shared, scope="shared")
+        B_shared = T.allocate([4096], "float32", "shared")
+        B_shared_1 = T.buffer_decl([4096], dtype="float32", data=B_shared, scope="shared")
+        T.launch_thread(threadIdx_x, 128)
+        for i_3_init in T.serial(2):
+            cse_var_1: T.int32 = i_3_init * 32
+            Y_local_1[cse_var_1] = T.float32(0)
+            Y_local_1[cse_var_1 + 64] = T.float32(0)
+            Y_local_1[cse_var_1 + 1] = T.float32(0)
+            Y_local_1[cse_var_1 + 65] = T.float32(0)
+            Y_local_1[cse_var_1 + 2] = T.float32(0)
+            Y_local_1[cse_var_1 + 66] = T.float32(0)
+            Y_local_1[cse_var_1 + 3] = T.float32(0)
+            Y_local_1[cse_var_1 + 67] = T.float32(0)
+            Y_local_1[cse_var_1 + 4] = T.float32(0)
+            Y_local_1[cse_var_1 + 68] = T.float32(0)
+            Y_local_1[cse_var_1 + 5] = T.float32(0)
+            Y_local_1[cse_var_1 + 69] = T.float32(0)
+            Y_local_1[cse_var_1 + 6] = T.float32(0)
+            Y_local_1[cse_var_1 + 70] = T.float32(0)
+            Y_local_1[cse_var_1 + 7] = T.float32(0)
+            Y_local_1[cse_var_1 + 71] = T.float32(0)
+            Y_local_1[cse_var_1 + 8] = T.float32(0)
+            Y_local_1[cse_var_1 + 72] = T.float32(0)
+            Y_local_1[cse_var_1 + 9] = T.float32(0)
+            Y_local_1[cse_var_1 + 73] = T.float32(0)
+            Y_local_1[cse_var_1 + 10] = T.float32(0)
+            Y_local_1[cse_var_1 + 74] = T.float32(0)
+            Y_local_1[cse_var_1 + 11] = T.float32(0)
+            Y_local_1[cse_var_1 + 75] = T.float32(0)
+            Y_local_1[cse_var_1 + 12] = T.float32(0)
+            Y_local_1[cse_var_1 + 76] = T.float32(0)
+            Y_local_1[cse_var_1 + 13] = T.float32(0)
+            Y_local_1[cse_var_1 + 77] = T.float32(0)
+            Y_local_1[cse_var_1 + 14] = T.float32(0)
+            Y_local_1[cse_var_1 + 78] = T.float32(0)
+            Y_local_1[cse_var_1 + 15] = T.float32(0)
+            Y_local_1[cse_var_1 + 79] = T.float32(0)
+            Y_local_1[cse_var_1 + 16] = T.float32(0)
+            Y_local_1[cse_var_1 + 80] = T.float32(0)
+            Y_local_1[cse_var_1 + 17] = T.float32(0)
+            Y_local_1[cse_var_1 + 81] = T.float32(0)
+            Y_local_1[cse_var_1 + 18] = T.float32(0)
+            Y_local_1[cse_var_1 + 82] = T.float32(0)
+            Y_local_1[cse_var_1 + 19] = T.float32(0)
+            Y_local_1[cse_var_1 + 83] = T.float32(0)
+            Y_local_1[cse_var_1 + 20] = T.float32(0)
+            Y_local_1[cse_var_1 + 84] = T.float32(0)
+            Y_local_1[cse_var_1 + 21] = T.float32(0)
+            Y_local_1[cse_var_1 + 85] = T.float32(0)
+            Y_local_1[cse_var_1 + 22] = T.float32(0)
+            Y_local_1[cse_var_1 + 86] = T.float32(0)
+            Y_local_1[cse_var_1 + 23] = T.float32(0)
+            Y_local_1[cse_var_1 + 87] = T.float32(0)
+            Y_local_1[cse_var_1 + 24] = T.float32(0)
+            Y_local_1[cse_var_1 + 88] = T.float32(0)
+            Y_local_1[cse_var_1 + 25] = T.float32(0)
+            Y_local_1[cse_var_1 + 89] = T.float32(0)
+            Y_local_1[cse_var_1 + 26] = T.float32(0)
+            Y_local_1[cse_var_1 + 90] = T.float32(0)
+            Y_local_1[cse_var_1 + 27] = T.float32(0)
+            Y_local_1[cse_var_1 + 91] = T.float32(0)
+            Y_local_1[cse_var_1 + 28] = T.float32(0)
+            Y_local_1[cse_var_1 + 92] = T.float32(0)
+            Y_local_1[cse_var_1 + 29] = T.float32(0)
+            Y_local_1[cse_var_1 + 93] = T.float32(0)
+            Y_local_1[cse_var_1 + 30] = T.float32(0)
+            Y_local_1[cse_var_1 + 94] = T.float32(0)
+            Y_local_1[cse_var_1 + 31] = T.float32(0)
+            Y_local_1[cse_var_1 + 95] = T.float32(0)
+        for k_0 in T.serial(96):
+            A_shared_1[threadIdx_x * 2:threadIdx_x * 2 + 2] = A_1[blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 3072 + k_0 * 32 + threadIdx_x % 16 * 2:blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 3072 + k_0 * 32 + threadIdx_x % 16 * 2 + 2]
+            A_shared_1[threadIdx_x * 2 + 256:threadIdx_x * 2 + 256 + 2] = A_1[blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 3072 + k_0 * 32 + threadIdx_x % 16 * 2 + 24576:blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 3072 + k_0 * 32 + threadIdx_x % 16 * 2 + 24576 + 2]
+            A_shared_1[threadIdx_x * 2 + 512:threadIdx_x * 2 + 512 + 2] = A_1[blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 3072 + k_0 * 32 + threadIdx_x % 16 * 2 + 49152:blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 3072 + k_0 * 32 + threadIdx_x % 16 * 2 + 49152 + 2]
+            A_shared_1[threadIdx_x * 2 + 768:threadIdx_x * 2 + 768 + 2] = A_1[blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 3072 + k_0 * 32 + threadIdx_x % 16 * 2 + 73728:blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 3072 + k_0 * 32 + threadIdx_x % 16 * 2 + 73728 + 2]
+            A_shared_1[threadIdx_x * 2 + 1024:threadIdx_x * 2 + 1024 + 2] = A_1[blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 3072 + k_0 * 32 + threadIdx_x % 16 * 2 + 98304:blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 3072 + k_0 * 32 + threadIdx_x % 16 * 2 + 98304 + 2]
+            A_shared_1[threadIdx_x * 2 + 1280:threadIdx_x * 2 + 1280 + 2] = A_1[blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 3072 + k_0 * 32 + threadIdx_x % 16 * 2 + 122880:blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 3072 + k_0 * 32 + threadIdx_x % 16 * 2 + 122880 + 2]
+            A_shared_1[threadIdx_x * 2 + 1536:threadIdx_x * 2 + 1536 + 2] = A_1[blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 3072 + k_0 * 32 + threadIdx_x % 16 * 2 + 147456:blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 3072 + k_0 * 32 + threadIdx_x % 16 * 2 + 147456 + 2]
+            A_shared_1[threadIdx_x * 2 + 1792:threadIdx_x * 2 + 1792 + 2] = A_1[blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 3072 + k_0 * 32 + threadIdx_x % 16 * 2 + 172032:blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 3072 + k_0 * 32 + threadIdx_x % 16 * 2 + 172032 + 2]
+            A_shared_1[threadIdx_x * 2 + 2048:threadIdx_x * 2 + 2048 + 2] = A_1[blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 3072 + k_0 * 32 + threadIdx_x % 16 * 2 + 196608:blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 3072 + k_0 * 32 + threadIdx_x % 16 * 2 + 196608 + 2]
+            A_shared_1[threadIdx_x * 2 + 2304:threadIdx_x * 2 + 2304 + 2] = A_1[blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 3072 + k_0 * 32 + threadIdx_x % 16 * 2 + 221184:blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 3072 + k_0 * 32 + threadIdx_x % 16 * 2 + 221184 + 2]
+            A_shared_1[threadIdx_x * 2 + 2560:threadIdx_x * 2 + 2560 + 2] = A_1[blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 3072 + k_0 * 32 + threadIdx_x % 16 * 2 + 245760:blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 3072 + k_0 * 32 + threadIdx_x % 16 * 2 + 245760 + 2]
+            A_shared_1[threadIdx_x * 2 + 2816:threadIdx_x * 2 + 2816 + 2] = A_1[blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 3072 + k_0 * 32 + threadIdx_x % 16 * 2 + 270336:blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 3072 + k_0 * 32 + threadIdx_x % 16 * 2 + 270336 + 2]
+            A_shared_1[threadIdx_x * 2 + 3072:threadIdx_x * 2 + 3072 + 2] = A_1[blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 3072 + k_0 * 32 + threadIdx_x % 16 * 2 + 294912:blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 3072 + k_0 * 32 + threadIdx_x % 16 * 2 + 294912 + 2]
+            A_shared_1[threadIdx_x * 2 + 3328:threadIdx_x * 2 + 3328 + 2] = A_1[blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 3072 + k_0 * 32 + threadIdx_x % 16 * 2 + 319488:blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 3072 + k_0 * 32 + threadIdx_x % 16 * 2 + 319488 + 2]
+            A_shared_1[threadIdx_x * 2 + 3584:threadIdx_x * 2 + 3584 + 2] = A_1[blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 3072 + k_0 * 32 + threadIdx_x % 16 * 2 + 344064:blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 3072 + k_0 * 32 + threadIdx_x % 16 * 2 + 344064 + 2]
+            A_shared_1[threadIdx_x * 2 + 3840:threadIdx_x * 2 + 3840 + 2] = A_1[blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 3072 + k_0 * 32 + threadIdx_x % 16 * 2 + 368640:blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 3072 + k_0 * 32 + threadIdx_x % 16 * 2 + 368640 + 2]
+            B_shared_1[threadIdx_x * 4:threadIdx_x * 4 + 4] = B_1[k_0 * 98304 + threadIdx_x // 32 * 3072 + blockIdx_x % 24 * 128 + threadIdx_x % 32 * 4:k_0 * 98304 + threadIdx_x // 32 * 3072 + blockIdx_x % 24 * 128 + threadIdx_x % 32 * 4 + 4]
+            B_shared_1[threadIdx_x * 4 + 512:threadIdx_x * 4 + 512 + 4] = B_1[k_0 * 98304 + threadIdx_x // 32 * 3072 + blockIdx_x % 24 * 128 + threadIdx_x % 32 * 4 + 12288:k_0 * 98304 + threadIdx_x // 32 * 3072 + blockIdx_x % 24 * 128 + threadIdx_x % 32 * 4 + 12288 + 4]
+            B_shared_1[threadIdx_x * 4 + 1024:threadIdx_x * 4 + 1024 + 4] = B_1[k_0 * 98304 + threadIdx_x // 32 * 3072 + blockIdx_x % 24 * 128 + threadIdx_x % 32 * 4 + 24576:k_0 * 98304 + threadIdx_x // 32 * 3072 + blockIdx_x % 24 * 128 + threadIdx_x % 32 * 4 + 24576 + 4]
+            B_shared_1[threadIdx_x * 4 + 1536:threadIdx_x * 4 + 1536 + 4] = B_1[k_0 * 98304 + threadIdx_x // 32 * 3072 + blockIdx_x % 24 * 128 + threadIdx_x % 32 * 4 + 36864:k_0 * 98304 + threadIdx_x // 32 * 3072 + blockIdx_x % 24 * 128 + threadIdx_x % 32 * 4 + 36864 + 4]
+            B_shared_1[threadIdx_x * 4 + 2048:threadIdx_x * 4 + 2048 + 4] = B_1[k_0 * 98304 + threadIdx_x // 32 * 3072 + blockIdx_x % 24 * 128 + threadIdx_x % 32 * 4 + 49152:k_0 * 98304 + threadIdx_x // 32 * 3072 + blockIdx_x % 24 * 128 + threadIdx_x % 32 * 4 + 49152 + 4]
+            B_shared_1[threadIdx_x * 4 + 2560:threadIdx_x * 4 + 2560 + 4] = B_1[k_0 * 98304 + threadIdx_x // 32 * 3072 + blockIdx_x % 24 * 128 + threadIdx_x % 32 * 4 + 61440:k_0 * 98304 + threadIdx_x // 32 * 3072 + blockIdx_x % 24 * 128 + threadIdx_x % 32 * 4 + 61440 + 4]
+            B_shared_1[threadIdx_x * 4 + 3072:threadIdx_x * 4 + 3072 + 4] = B_1[k_0 * 98304 + threadIdx_x // 32 * 3072 + blockIdx_x % 24 * 128 + threadIdx_x % 32 * 4 + 73728:k_0 * 98304 + threadIdx_x // 32 * 3072 + blockIdx_x % 24 * 128 + threadIdx_x % 32 * 4 + 73728 + 4]
+            B_shared_1[threadIdx_x * 4 + 3584:threadIdx_x * 4 + 3584 + 4] = B_1[k_0 * 98304 + threadIdx_x // 32 * 3072 + blockIdx_x % 24 * 128 + threadIdx_x % 32 * 4 + 86016:k_0 * 98304 + threadIdx_x // 32 * 3072 + blockIdx_x % 24 * 128 + threadIdx_x % 32 * 4 + 86016 + 4]
+            for k_1, i_3, k_2 in T.grid(16, 2, 2):
+                cse_var_65: T.int32 = i_3 * 32
+                cse_var_64: T.int32 = cse_var_65 + 95
+                cse_var_63: T.int32 = cse_var_65 + 94
+                cse_var_62: T.int32 = cse_var_65 + 93
+                cse_var_61: T.int32 = cse_var_65 + 92
+                cse_var_60: T.int32 = cse_var_65 + 91
+                cse_var_59: T.int32 = cse_var_65 + 90
+                cse_var_58: T.int32 = cse_var_65 + 9
+                cse_var_57: T.int32 = cse_var_65 + 89
+                cse_var_56: T.int32 = cse_var_65 + 88
+                cse_var_55: T.int32 = cse_var_65 + 87
+                cse_var_54: T.int32 = cse_var_65 + 86
+                cse_var_53: T.int32 = cse_var_65 + 85
+                cse_var_52: T.int32 = cse_var_65 + 84
+                cse_var_51: T.int32 = cse_var_65 + 83
+                cse_var_50: T.int32 = cse_var_65 + 82
+                cse_var_49: T.int32 = cse_var_65 + 81
+                cse_var_48: T.int32 = cse_var_65 + 80
+                cse_var_47: T.int32 = cse_var_65 + 8
+                cse_var_46: T.int32 = cse_var_65 + 79
+                cse_var_45: T.int32 = cse_var_65 + 78
+                cse_var_44: T.int32 = cse_var_65 + 77
+                cse_var_43: T.int32 = cse_var_65 + 76
+                cse_var_42: T.int32 = cse_var_65 + 75
+                cse_var_41: T.int32 = cse_var_65 + 74
+                cse_var_40: T.int32 = cse_var_65 + 73
+                cse_var_39: T.int32 = cse_var_65 + 72
+                cse_var_38: T.int32 = cse_var_65 + 71
+                cse_var_37: T.int32 = cse_var_65 + 70
+                cse_var_36: T.int32 = cse_var_65 + 7
+                cse_var_35: T.int32 = cse_var_65 + 69
+                cse_var_34: T.int32 = cse_var_65 + 68
+                cse_var_33: T.int32 = cse_var_65 + 67
+                cse_var_32: T.int32 = cse_var_65 + 66
+                cse_var_31: T.int32 = cse_var_65 + 65
+                cse_var_30: T.int32 = cse_var_65 + 64
+                cse_var_29: T.int32 = cse_var_65 + 6
+                cse_var_28: T.int32 = cse_var_65 + 5
+                cse_var_27: T.int32 = cse_var_65 + 4
+                cse_var_26: T.int32 = cse_var_65 + 31
+                cse_var_25: T.int32 = cse_var_65 + 30
+                cse_var_24: T.int32 = cse_var_65 + 3
+                cse_var_23: T.int32 = cse_var_65 + 29
+                cse_var_22: T.int32 = cse_var_65 + 28
+                cse_var_21: T.int32 = cse_var_65 + 27
+                cse_var_20: T.int32 = cse_var_65 + 26
+                cse_var_19: T.int32 = cse_var_65 + 25
+                cse_var_18: T.int32 = cse_var_65 + 24
+                cse_var_17: T.int32 = cse_var_65 + 23
+                cse_var_16: T.int32 = cse_var_65 + 22
+                cse_var_15: T.int32 = cse_var_65 + 21
+                cse_var_14: T.int32 = cse_var_65 + 20
+                cse_var_13: T.int32 = cse_var_65 + 2
+                cse_var_12: T.int32 = cse_var_65 + 19
+                cse_var_11: T.int32 = cse_var_65 + 18
+                cse_var_10: T.int32 = cse_var_65 + 17
+                cse_var_9: T.int32 = cse_var_65 + 16
+                cse_var_8: T.int32 = cse_var_65 + 15
+                cse_var_7: T.int32 = cse_var_65 + 14
+                cse_var_6: T.int32 = cse_var_65 + 13
+                cse_var_5: T.int32 = cse_var_65 + 12
+                cse_var_4: T.int32 = cse_var_65 + 11
+                cse_var_3: T.int32 = cse_var_65 + 10
+                cse_var_2: T.int32 = cse_var_65 + 1
+                Y_local_1[cse_var_65] = Y_local_1[cse_var_65] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4]
+                Y_local_1[cse_var_30] = Y_local_1[cse_var_30] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 64]
+                Y_local_1[cse_var_2] = Y_local_1[cse_var_2] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 1]
+                Y_local_1[cse_var_31] = Y_local_1[cse_var_31] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 65]
+                Y_local_1[cse_var_13] = Y_local_1[cse_var_13] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 2]
+                Y_local_1[cse_var_32] = Y_local_1[cse_var_32] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 66]
+                Y_local_1[cse_var_24] = Y_local_1[cse_var_24] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 3]
+                Y_local_1[cse_var_33] = Y_local_1[cse_var_33] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 67]
+                Y_local_1[cse_var_27] = Y_local_1[cse_var_27] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 32] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4]
+                Y_local_1[cse_var_34] = Y_local_1[cse_var_34] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 32] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 64]
+                Y_local_1[cse_var_28] = Y_local_1[cse_var_28] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 32] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 1]
+                Y_local_1[cse_var_35] = Y_local_1[cse_var_35] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 32] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 65]
+                Y_local_1[cse_var_29] = Y_local_1[cse_var_29] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 32] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 2]
+                Y_local_1[cse_var_37] = Y_local_1[cse_var_37] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 32] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 66]
+                Y_local_1[cse_var_36] = Y_local_1[cse_var_36] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 32] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 3]
+                Y_local_1[cse_var_38] = Y_local_1[cse_var_38] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 32] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 67]
+                Y_local_1[cse_var_47] = Y_local_1[cse_var_47] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 64] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4]
+                Y_local_1[cse_var_39] = Y_local_1[cse_var_39] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 64] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 64]
+                Y_local_1[cse_var_58] = Y_local_1[cse_var_58] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 64] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 1]
+                Y_local_1[cse_var_40] = Y_local_1[cse_var_40] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 64] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 65]
+                Y_local_1[cse_var_3] = Y_local_1[cse_var_3] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 64] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 2]
+                Y_local_1[cse_var_41] = Y_local_1[cse_var_41] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 64] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 66]
+                Y_local_1[cse_var_4] = Y_local_1[cse_var_4] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 64] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 3]
+                Y_local_1[cse_var_42] = Y_local_1[cse_var_42] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 64] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 67]
+                Y_local_1[cse_var_5] = Y_local_1[cse_var_5] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 96] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4]
+                Y_local_1[cse_var_43] = Y_local_1[cse_var_43] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 96] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 64]
+                Y_local_1[cse_var_6] = Y_local_1[cse_var_6] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 96] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 1]
+                Y_local_1[cse_var_44] = Y_local_1[cse_var_44] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 96] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 65]
+                Y_local_1[cse_var_7] = Y_local_1[cse_var_7] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 96] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 2]
+                Y_local_1[cse_var_45] = Y_local_1[cse_var_45] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 96] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 66]
+                Y_local_1[cse_var_8] = Y_local_1[cse_var_8] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 96] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 3]
+                Y_local_1[cse_var_46] = Y_local_1[cse_var_46] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 96] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 67]
+                Y_local_1[cse_var_9] = Y_local_1[cse_var_9] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 128] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4]
+                Y_local_1[cse_var_48] = Y_local_1[cse_var_48] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 128] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 64]
+                Y_local_1[cse_var_10] = Y_local_1[cse_var_10] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 128] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 1]
+                Y_local_1[cse_var_49] = Y_local_1[cse_var_49] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 128] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 65]
+                Y_local_1[cse_var_11] = Y_local_1[cse_var_11] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 128] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 2]
+                Y_local_1[cse_var_50] = Y_local_1[cse_var_50] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 128] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 66]
+                Y_local_1[cse_var_12] = Y_local_1[cse_var_12] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 128] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 3]
+                Y_local_1[cse_var_51] = Y_local_1[cse_var_51] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 128] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 67]
+                Y_local_1[cse_var_14] = Y_local_1[cse_var_14] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 160] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4]
+                Y_local_1[cse_var_52] = Y_local_1[cse_var_52] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 160] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 64]
+                Y_local_1[cse_var_15] = Y_local_1[cse_var_15] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 160] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 1]
+                Y_local_1[cse_var_53] = Y_local_1[cse_var_53] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 160] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 65]
+                Y_local_1[cse_var_16] = Y_local_1[cse_var_16] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 160] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 2]
+                Y_local_1[cse_var_54] = Y_local_1[cse_var_54] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 160] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 66]
+                Y_local_1[cse_var_17] = Y_local_1[cse_var_17] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 160] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 3]
+                Y_local_1[cse_var_55] = Y_local_1[cse_var_55] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 160] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 67]
+                Y_local_1[cse_var_18] = Y_local_1[cse_var_18] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 192] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4]
+                Y_local_1[cse_var_56] = Y_local_1[cse_var_56] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 192] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 64]
+                Y_local_1[cse_var_19] = Y_local_1[cse_var_19] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 192] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 1]
+                Y_local_1[cse_var_57] = Y_local_1[cse_var_57] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 192] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 65]
+                Y_local_1[cse_var_20] = Y_local_1[cse_var_20] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 192] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 2]
+                Y_local_1[cse_var_59] = Y_local_1[cse_var_59] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 192] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 66]
+                Y_local_1[cse_var_21] = Y_local_1[cse_var_21] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 192] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 3]
+                Y_local_1[cse_var_60] = Y_local_1[cse_var_60] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 192] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 67]
+                Y_local_1[cse_var_22] = Y_local_1[cse_var_22] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 224] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4]
+                Y_local_1[cse_var_61] = Y_local_1[cse_var_61] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 224] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 64]
+                Y_local_1[cse_var_23] = Y_local_1[cse_var_23] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 224] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 1]
+                Y_local_1[cse_var_62] = Y_local_1[cse_var_62] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 224] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 65]
+                Y_local_1[cse_var_25] = Y_local_1[cse_var_25] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 224] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 2]
+                Y_local_1[cse_var_63] = Y_local_1[cse_var_63] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 224] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 66]
+                Y_local_1[cse_var_26] = Y_local_1[cse_var_26] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 224] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 3]
+                Y_local_1[cse_var_64] = Y_local_1[cse_var_64] + A_shared_1[threadIdx_x // 16 * 512 + i_3 * 256 + k_1 * 2 + k_2 + 224] * B_shared_1[k_1 * 256 + k_2 * 128 + threadIdx_x % 16 * 4 + 67]
+        for ax0 in T.serial(16):
+            cse_var_66: T.int32 = ax0 * 4
+            Y_1[blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 49152 + ax0 * 3072 + blockIdx_x % 24 * 128 + threadIdx_x % 16 * 4] = Y_local_1[cse_var_66]
+            Y_1[blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 49152 + ax0 * 3072 + blockIdx_x % 24 * 128 + threadIdx_x % 16 * 4 + 64] = Y_local_1[cse_var_66 + 64]
+            Y_1[blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 49152 + ax0 * 3072 + blockIdx_x % 24 * 128 + threadIdx_x % 16 * 4 + 1] = Y_local_1[cse_var_66 + 1]
+            Y_1[blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 49152 + ax0 * 3072 + blockIdx_x % 24 * 128 + threadIdx_x % 16 * 4 + 65] = Y_local_1[cse_var_66 + 65]
+            Y_1[blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 49152 + ax0 * 3072 + blockIdx_x % 24 * 128 + threadIdx_x % 16 * 4 + 2] = Y_local_1[cse_var_66 + 2]
+            Y_1[blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 49152 + ax0 * 3072 + blockIdx_x % 24 * 128 + threadIdx_x % 16 * 4 + 66] = Y_local_1[cse_var_66 + 66]
+            Y_1[blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 49152 + ax0 * 3072 + blockIdx_x % 24 * 128 + threadIdx_x % 16 * 4 + 3] = Y_local_1[cse_var_66 + 3]
+            Y_1[blockIdx_x // 24 * 393216 + threadIdx_x // 16 * 49152 + ax0 * 3072 + blockIdx_x % 24 * 128 + threadIdx_x % 16 * 4 + 67] = Y_local_1[cse_var_66 + 67]
+    
+
